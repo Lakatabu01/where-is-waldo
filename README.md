@@ -4,7 +4,7 @@ This project is a "Where is Waldo" game that allows users to find Waldo and his 
 Getting Started
 To get started with the project, follow these steps:
 
-Clone the repository to your local machine using git clone https://github.com/yourusername/where-is-waldo.git.
+Clone the repository to your local machine using git clone https://github.com/Lakatabu01/where-is-waldo.git
 Install the required dependencies by running npm install or yarn install.
 Create a new Firebase project and add your Firebase configuration to the .env file.
 Start the development server by running npm start or yarn start.
