@@ -1,9 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
-
-import 'firebase/firestore';
-
 const firebaseConfig = {
     apiKey: "AIzaSyA9Z5zZ1629HDOV13ksaDUqFkz-BKYKE8Y",
     authDomain: "where-is-waldo-f828f.firebaseapp.com",
@@ -18,7 +15,8 @@ const firebaseConfig = {
 // Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 
-// Access Firestore instance
+//  getFirestore function is called with the app object as an argument 
+//  to get a reference to the Firestore database
 const db = getFirestore(app);
 
 export { db };
