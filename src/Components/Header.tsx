@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div>
       <div>
-        <Button> Home </Button>
+        <Button bgColor="red"> Home </Button>
       </div>
 
       <div>
