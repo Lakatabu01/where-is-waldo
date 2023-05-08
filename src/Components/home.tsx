@@ -8,7 +8,7 @@ const Home: FC = () => {
     <div>
       <GameDisplay />
 
-      <NavLink to="/game">
+      <NavLink to="/game" data-testid="play-game">
         <Button bgColor="white"> Start Game</Button>
       </NavLink>
     </div>

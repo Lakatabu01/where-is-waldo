@@ -1,11 +1,14 @@
 import React from "react";
 import { Button } from "../Styles/Buttons.styles";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
     <div>
       <div>
-        <Button bgColor="red"> Home </Button>
+        <NavLink to="/">
+          <Button bgColor="red"> Home </Button>
+        </NavLink>
       </div>
 
       <div>
