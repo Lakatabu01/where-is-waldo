@@ -1,20 +1,30 @@
 import React from "react";
 import { Button } from "../Styles/Buttons.styles";
 import { NavLink } from "react-router-dom";
+import ImageGroup, { DivContainer } from "../Styles/CharacterImage";
 
-const Header = () => {
+interface HeaderProps {
+  onMouseEnter: React.MouseEventHandler;
+}
+
+const Header: React.FC<HeaderProps> = ({ onMouseEnter }) => {
   return (
-    <div>
+    <DivContainer onMouseEnter={onMouseEnter}>
       <div>
         <NavLink to="/">
-          <Button bgColor="red"> Home </Button>
+          <Button bgColor="purple" color="white">
+            {" "}
+            Home{" "}
+          </Button>
         </NavLink>
       </div>
 
       <div>
         <h1>Where's Waldo </h1>
       </div>
-    </div>
+
+      <ImageGroup />
+    </DivContainer>
   );
 };
 

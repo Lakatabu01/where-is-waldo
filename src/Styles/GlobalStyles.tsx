@@ -5,6 +5,5 @@ body{
     text-align: center;
     margin: 0px;
     padding: 0px;
-    background-color: green;
-}
+    background-color: #fff9f9;}
 `;
