@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Home from "./Components/home";
 import Header from "./Components/Header";
 import Game from "./Components/game";
@@ -9,19 +9,22 @@ import Game3 from "./Components/game3";
 
 function App() {
   const pageCoordinate = (e: React.MouseEvent) => {
-    console.log(e.pageX);
-    console.log(e.pageY);
+    console.log(e.pageX + " x axis");
+    console.log(e.pageY + " y axis");
   };
 
   return (
     <BrowserRouter>
       <div>
         <GlobalStyle />
-        <Header onMouseEnter={(e) => pageCoordinate(e)} />
+        <Header />
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/game" element={<Game />} />
+          <Route
+            path="/game"
+            element={<Game onClick={(e) => pageCoordinate(e)} />}
+          />
           <Route path="/game2" element={<Game2 />} />
           <Route path="/game3" element={<Game3 />} />
         </Routes>
