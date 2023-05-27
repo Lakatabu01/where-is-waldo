@@ -1,6 +1,5 @@
-import { getFirestore, collection, setDoc, doc } from "firebase/firestore";
-import { getApps, initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA9Z5zZ1629HDOV13ksaDUqFkz-BKYKE8Y",
@@ -17,23 +16,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
-//Send the coordinates of hidden characters to the database
-const characterOne = "Waldo";
-const waldoInfo = {
-  x: [645, 710],
-  y: [590, 690],
-};
-
-// Get a reference to the document within the 'coordinates' collection
-const documentRef = doc(db, "coordinates", characterOne);
-
-// Set the coordinates data for the document
-setDoc(documentRef, waldoInfo)
-  .then(() => {
-    // Coordinates saved successfully
-  })
-  .catch((error) => {
-    // An error occurred while saving coordinates
-  });
 
 export { db };

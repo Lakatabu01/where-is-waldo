@@ -1,17 +1,9 @@
 import React from "react";
 import GamePhoto from "../Styles/GamePhoto";
 import { FC } from "react";
-import { db } from "../Firebase/firebase";
+import coordinates from "./coordinates";
 
-//Send the coordinates of hidden characters to the database
-const characterOne = "Waldo";
-const waldoInfo = {
-  x: [645, 710],
-  y: [590, 690],
-};
-
-const collection = db.collection("my-collection");
-db.collection("coordinates").doc(characterOne).set(waldoInfo);
+coordinates();
 
 interface GameProp {
   onClick?: React.MouseEventHandler;
