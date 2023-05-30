@@ -16,6 +16,7 @@ export const DivContainer = styled.div`
   color: black;
   align-items: center;
   padding: 3px;
+  height: 100px;
 `;
 
 const ImageGroup = () => {

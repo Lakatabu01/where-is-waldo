@@ -7,6 +7,7 @@ const GamePhoto = styled.img`
   object-position: 50% 50%;
   margin: 25px 5px 25px 5px;
   box-shadow: 2px 2px 5px black;
+  cursor: pointer;
 `;
 
 export default GamePhoto;
