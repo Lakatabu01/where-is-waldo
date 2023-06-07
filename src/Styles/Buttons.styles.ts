@@ -15,4 +15,5 @@ export const Button = styled.button<Prop>`
   border-radius: 4%;
   font-size: 15px;
   font-weight: bolder;
+  z-index: 2;
 `;
