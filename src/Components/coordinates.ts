@@ -38,8 +38,8 @@ function coordinates() {
 
   const characterThree = "Wizard";
   const wizardInfo = {
-    x: [600, 690],
-    y: [779, 835],
+    x: [779, 835],
+    y: [600, 690],
   };
 
   const documentRefThree = doc(db, "coordinates", characterThree);
@@ -52,7 +52,9 @@ function coordinates() {
     });
 }
 
-//Check if user found Wally
+let userSpotted;
+
+//Check if user found Waldo
 export async function fetchCoordinates(
   characterName: string,
   position: number[]
@@ -71,7 +73,8 @@ export async function fetchCoordinates(
       console.log(`${characterName} coordinates:`, coordinates);
 
       if (position[0] >= coordinates.x[0] && position[0] <= coordinates.x[1]) {
-        console.log("right selection");
+        userSpotted = characterName;
+        console.log("Spotted " + userSpotted);
       } else {
         console.log("wrong selection");
       }
@@ -84,3 +87,9 @@ export async function fetchCoordinates(
 }
 
 export default coordinates;
+
+//i already got a way to compare what user selected to the actual coordinates
+//next is to replicate same for other characters
+// create a modal to display if selection was right or wrong
+//then create a timer
+//then create a high score board

@@ -26,9 +26,7 @@ const Game: FC<GameProp> = ({ onClick }) => {
       highlighter.style.top = e.pageY - 120 + "px";
       highlighter.style.left = e.pageX - 20 + "px";
       currentUserSelection = [e.pageX, e.pageY];
-
       displayOptions(e);
-      fetchCoordinates("Waldo", currentUserSelection);
 
       setTimeout(unhighlight, 750);
     }
@@ -63,9 +61,24 @@ const Game: FC<GameProp> = ({ onClick }) => {
       <GamePhoto id="game-image" src={image} onClick={highlight} />
       <Highlighter id="marker" />
       <CharacterSelector id="selector">
-        <Button bgColor="white">Waldo</Button>
-        <Button bgColor="white">Wally</Button>
-        <Button bgColor="white">Wizard</Button>
+        <Button
+          bgColor="white"
+          onClick={() => fetchCoordinates("Waldo", currentUserSelection)}
+        >
+          Waldo
+        </Button>
+        <Button
+          bgColor="white"
+          onClick={() => fetchCoordinates("Wally", currentUserSelection)}
+        >
+          Wally
+        </Button>
+        <Button
+          bgColor="white"
+          onClick={() => fetchCoordinates("Wizard", currentUserSelection)}
+        >
+          Wizard
+        </Button>
       </CharacterSelector>
     </div>
   );
