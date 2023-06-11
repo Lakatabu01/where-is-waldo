@@ -6,6 +6,7 @@ import Highlighter from "../Styles/Highlighter.style";
 import CharacterSelector from "../Styles/CharacterSelector";
 import { Button } from "../Styles/Buttons.styles";
 import { fetchCoordinates } from "./coordinates";
+import { TheModal } from "../Styles/Modal.style";
 
 coordinates();
 
@@ -56,6 +57,10 @@ const Game: FC<GameProp> = ({ onClick }) => {
     }
   };
 
+  const waldoMessage = "Bravo you found Waldo";
+  const wallyMessage = "Bravo you found Odlaw";
+  const wizardMessage = "Bravo you found the Wizard";
+
   return (
     <div style={{ position: "relative" }} onClick={onClick}>
       <GamePhoto id="game-image" src={image} onClick={highlight} />
@@ -63,23 +68,31 @@ const Game: FC<GameProp> = ({ onClick }) => {
       <CharacterSelector id="selector">
         <Button
           bgColor="white"
-          onClick={() => fetchCoordinates("Waldo", currentUserSelection)}
+          onClick={() =>
+            fetchCoordinates("Waldo", currentUserSelection, waldoMessage)
+          }
         >
           Waldo
         </Button>
         <Button
           bgColor="white"
-          onClick={() => fetchCoordinates("Wally", currentUserSelection)}
+          onClick={() =>
+            fetchCoordinates("Wally", currentUserSelection, wallyMessage)
+          }
         >
-          Wally
+          Odlaw
         </Button>
         <Button
           bgColor="white"
-          onClick={() => fetchCoordinates("Wizard", currentUserSelection)}
+          onClick={() =>
+            fetchCoordinates("Wizard", currentUserSelection, wizardMessage)
+          }
         >
           Wizard
         </Button>
       </CharacterSelector>
+
+      <TheModal />
     </div>
   );
 };

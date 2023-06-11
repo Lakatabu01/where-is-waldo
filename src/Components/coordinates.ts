@@ -21,19 +21,19 @@ function coordinates() {
       console.log(error + "failed to upload");
     });
 
-  const characterTwo = "Wally";
-  const wallyInfo = {
+  const characterTwo = "Odlaw";
+  const odlawInfo = {
     x: [279, 298],
     y: [605, 710],
   };
 
   const documentRefTwo = doc(db, "coordinates", characterTwo);
-  setDoc(documentRefTwo, wallyInfo)
+  setDoc(documentRefTwo, odlawInfo)
     .then(() => {
-      console.log("wally coordinates saved");
+      console.log("Odlaw coordinates saved");
     })
     .catch((error) => {
-      console.log(error + " wally coordinates not saved");
+      console.log(error + " Odlaw coordinates not saved");
     });
 
   const characterThree = "Wizard";
@@ -57,7 +57,8 @@ let userSpotted;
 //Check if user found Waldo
 export async function fetchCoordinates(
   characterName: string,
-  position: number[]
+  position: number[],
+  message: string
 ) {
   try {
     // Get a reference to the document within the 'coordinates' collection
@@ -72,10 +73,27 @@ export async function fetchCoordinates(
 
       console.log(`${characterName} coordinates:`, coordinates);
 
-      if (position[0] >= coordinates.x[0] && position[0] <= coordinates.x[1]) {
+      if (
+        position[0] >= coordinates.x[0] &&
+        position[0] <= coordinates.x[1] &&
+        position[1] >= coordinates.y[0] &&
+        position[1] <= coordinates.y[1]
+      ) {
+        const modal = document.getElementById("myModal");
+        const text = document.getElementById("message");
+        if (modal && text) {
+          modal.style.display = "block";
+          text.textContent = message;
+        }
         userSpotted = characterName;
         console.log("Spotted " + userSpotted);
       } else {
+        const modal = document.getElementById("myModal");
+        const text = document.getElementById("message");
+        if (modal && text) {
+          modal.style.display = "block";
+          text.textContent = "Wrong selection, keep searching";
+        }
         console.log("wrong selection");
       }
     } else {
@@ -88,8 +106,8 @@ export async function fetchCoordinates(
 
 export default coordinates;
 
-//i already got a way to compare what user selected to the actual coordinates
-//next is to replicate same for other characters
-// create a modal to display if selection was right or wrong
+// remember to set conditional on the y axis too not on the x axis alone
 //then create a timer
 //then create a high score board
+//Properly comment the codebase
+//Remove all console.log statements
