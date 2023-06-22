@@ -1,5 +1,7 @@
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../Firebase/firebase.config";
+import { start } from "../Features/CharactersFound";
+import { store } from "../index";
 
 function coordinates() {
   //Send the coordinates of hidden characters to the database
@@ -58,7 +60,8 @@ let userSpotted;
 export async function fetchCoordinates(
   characterName: string,
   position: number[],
-  message: string
+  message: string,
+  currentState: any // Pass the current state as an argument
 ) {
   try {
     // Get a reference to the document within the 'coordinates' collection
@@ -73,14 +76,32 @@ export async function fetchCoordinates(
 
       console.log(`${characterName} coordinates:`, coordinates);
 
+      //Compare user coordinates with the ones saved to database
       if (
         position[0] >= coordinates.x[0] &&
         position[0] <= coordinates.x[1] &&
         position[1] >= coordinates.y[0] &&
         position[1] <= coordinates.y[1]
       ) {
-        const modal = document.getElementById("myModal");
-        const text = document.getElementById("message");
+        // Dispatch an action to update the state
+        // Access the state directly from the currentState argument
+        const found = currentState.counter.value.found;
+
+        store.dispatch({
+          type: "UPDATE DATA",
+          payload: { found: found + 1 },
+        });
+
+        const unsubscribe = store.subscribe(() => {
+          const updatedFound = store.getState().counter.value.found;
+          console.log(updatedFound); // Log the updated value
+          unsubscribe(); // Unsubscribe to avoid further logs
+        });
+
+        //Add different messages to the modal depending
+        //on what user clicks
+        const modal = document.getElementById("myModal"); // Refactor, use state instead and don't change DOM elements directly
+        const text = document.getElementById("message"); // Refactor, use state instead and don't change DOM elements directly
         if (modal && text) {
           modal.style.display = "block";
           text.textContent = message;
@@ -88,8 +109,8 @@ export async function fetchCoordinates(
         userSpotted = characterName;
         console.log("Spotted " + userSpotted);
       } else {
-        const modal = document.getElementById("myModal");
-        const text = document.getElementById("message");
+        const modal = document.getElementById("myModal"); // Refactor, use state instead and don't change DOM elements directly
+        const text = document.getElementById("message"); // Refactor, use state instead and don't change DOM elements directly
         if (modal && text) {
           modal.style.display = "block";
           text.textContent = "Wrong selection, keep searching";
@@ -106,8 +127,5 @@ export async function fetchCoordinates(
 
 export default coordinates;
 
-// remember to set conditional on the y axis too not on the x axis alone
-//then create a timer
-//then create a high score board
-//Properly comment the codebase
-//Remove all console.log statements
+// This "const found = currentState.characters.value.found;" becomes
+// const found = currentState.whatever-name-i-give-the-slice.value.found;

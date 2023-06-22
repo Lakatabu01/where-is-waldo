@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../Styles/Buttons.styles";
 import { NavLink } from "react-router-dom";
 import ImageGroup, { DivContainer } from "../Styles/CharacterImage";
-
+import TheTime from "./theTime";
 const Header: React.FC = () => {
   return (
     <DivContainer>
@@ -20,6 +20,7 @@ const Header: React.FC = () => {
       </div>
 
       <ImageGroup />
+      <TheTime />
     </DivContainer>
   );
 };

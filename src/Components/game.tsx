@@ -5,8 +5,14 @@ import coordinates from "./coordinates";
 import Highlighter from "../Styles/Highlighter.style";
 import CharacterSelector from "../Styles/CharacterSelector";
 import { Button } from "../Styles/Buttons.styles";
-import { fetchCoordinates } from "./coordinates";
 import { TheModal } from "../Styles/Modal.style";
+import { useState } from "react";
+import Count from "./countLogic";
+import { useDispatch, useSelector } from "react-redux";
+import { store } from "../index";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../Firebase/firebase.config";
+import { start } from "../Features/CharactersFound";
 
 coordinates();
 
@@ -15,13 +21,100 @@ interface GameProp {
 }
 
 const Game: FC<GameProp> = ({ onClick }) => {
+  const [loading, setLoading] = useState(false);
+  const [levelSelected, setLevelSelected] = useState(true);
+
   const image =
     "https://firebasestorage.googleapis.com/v0/b/where-is-waldo-f828f.appspot.com/o/where's-waldo1.jpg?alt=media&token=ef608e8f-1542-44cc-a3c9-f9cc957122c1";
+
   let currentUserSelection: number[] = [];
+  const dispatch = useDispatch();
+  const [foundCharacters, setFoundCharacters] = useState<string[]>([]);
+
+  interface Value {
+    counter: { value: { found: number } };
+  }
+
+  const selector = useSelector((state: Value) => state.counter.value);
+  const charactersFound = selector.found;
+
+  let userSpotted;
+
+  //Check if user found Waldo
+  const fetchCoordinates = async (
+    characterName: string,
+    position: number[],
+    message: string
+  ) => {
+    if (!loading) {
+      setLoading(true);
+
+      // Check if the character has already been found
+      if (foundCharacters.includes(characterName)) {
+        setLoading(false);
+        return;
+      }
+      try {
+        // Get a reference to the document within the 'coordinates' collection
+        const documentRef = doc(db, "coordinates", characterName);
+
+        // Retrieve the document data
+        const documentSnapshot = await getDoc(documentRef);
+
+        if (documentSnapshot.exists()) {
+          // Extract the coordinates from the document snapshot
+          const coordinates = documentSnapshot.data();
+
+          console.log(`${characterName} coordinates:`, coordinates);
+
+          //Compare user coordinates with the ones saved to database
+          if (
+            position[0] >= coordinates.x[0] &&
+            position[0] <= coordinates.x[1] &&
+            position[1] >= coordinates.y[0] &&
+            position[1] <= coordinates.y[1]
+          ) {
+            // Dispatch an action to update the state
+            // Access the state directly from the currentState argument
+
+            if (!foundCharacters.includes(characterName)) {
+              // Dispatch an action to update the state
+              dispatch(start({ found: charactersFound + 1 }));
+
+              // Add the character to the found characters list
+              setFoundCharacters([...foundCharacters, characterName]);
+            }
+
+            //Add different messages to the modal depending on what user clicks
+            const modal = document.getElementById("myModal"); // Refactor, use state instead and don't change DOM elements directly
+            const text = document.getElementById("message"); // Refactor, use state instead and don't change DOM elements directly
+            if (modal && text) {
+              modal.style.display = "block";
+              text.textContent = message;
+            }
+            userSpotted = characterName;
+            console.log("Spotted " + userSpotted);
+          } else {
+            const modal = document.getElementById("myModal"); // Refactor, use state instead and don't change DOM elements directly
+            const text = document.getElementById("message"); // Refactor, use state instead and don't change DOM elements directly
+            if (modal && text) {
+              modal.style.display = "block";
+              text.textContent = "Wrong selection, keep searching";
+            }
+            console.log("wrong selection");
+          }
+        } else {
+          console.log(`${characterName} coordinates not found`);
+        }
+      } catch (error) {
+        console.log(`Error fetching ${characterName} coordinates:`, error);
+      }
+      setLoading(false);
+    }
+  };
 
   const highlight = (e: React.MouseEvent<Element, MouseEvent>) => {
     const highlighter = document.getElementById("marker");
-
     if (highlighter) {
       highlighter.style.display = "block";
       highlighter.style.top = e.pageY - 120 + "px";
@@ -58,13 +151,14 @@ const Game: FC<GameProp> = ({ onClick }) => {
   };
 
   const waldoMessage = "Bravo you found Waldo";
-  const wallyMessage = "Bravo you found Odlaw";
+  const odlawMessage = "Bravo you found Odlaw";
   const wizardMessage = "Bravo you found the Wizard";
 
   return (
     <div style={{ position: "relative" }} onClick={onClick}>
       <GamePhoto id="game-image" src={image} onClick={highlight} />
       <Highlighter id="marker" />
+
       <CharacterSelector id="selector">
         <Button
           bgColor="white"
@@ -74,14 +168,16 @@ const Game: FC<GameProp> = ({ onClick }) => {
         >
           Waldo
         </Button>
+
         <Button
           bgColor="white"
           onClick={() =>
-            fetchCoordinates("Wally", currentUserSelection, wallyMessage)
+            fetchCoordinates("Odlaw", currentUserSelection, odlawMessage)
           }
         >
           Odlaw
         </Button>
+
         <Button
           bgColor="white"
           onClick={() =>
@@ -93,6 +189,7 @@ const Game: FC<GameProp> = ({ onClick }) => {
       </CharacterSelector>
 
       <TheModal />
+      <Count levelSelected={levelSelected} charactersFound={charactersFound} />
     </div>
   );
 };
