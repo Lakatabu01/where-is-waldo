@@ -1,17 +1,19 @@
 import styled from "styled-components";
+import { FC } from "react";
 
 const Modal = styled.div`
+  display: block;
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 4; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
 `;
-export { ModalContent, Span, Text };
+export { Modal, ModalContent, Span, Text, InputGroup, Input, Label, Button };
 
 const ModalContent = styled.div`
   background-color: #fefefe;
@@ -47,11 +49,16 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 80%;
+  width: 50%;
   color: black;
+  margin-left: 2%;
 `;
 
-export const TheModal = () => {
+const Button = styled.button`
+  padding: 4px;
+`;
+
+export const WinnerModal: FC = () => {
   const closeModal = () => {
     const close = document.getElementById("myModal");
     if (close) {
@@ -60,10 +67,16 @@ export const TheModal = () => {
   };
 
   return (
-    <Modal id="myModal">
+    <Modal id="TheModal">
       <ModalContent>
-        <Span onClick={closeModal}> &times; </Span>
+        {/*<Span onClick={closeModal}> &times; </Span>*/}
         <Text id="message"> Congratulations, you won!</Text>
+        <InputGroup>
+          <Label>
+            Enter your name
+            <Input />
+          </Label>
+        </InputGroup>
       </ModalContent>
     </Modal>
   );

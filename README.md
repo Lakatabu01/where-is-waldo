@@ -1,5 +1,5 @@
 Where is Waldo App
-This project is a "Where is Waldo" game that allows users to find Waldo and his friends in a busy scene. The app is built using React, TypeScript, Firebase, and styled-components.
+This project is a "Where is Waldo" game that allows users to find Waldo and his friends in a busy scene. The app is built using React, TypeScript, Firebase, Redux toolkit and styled-components.
 
 Getting Started
 To get started with the project, follow these steps:
@@ -16,6 +16,8 @@ TypeScript: A statically typed superset of JavaScript that adds optional types t
 Firebase: A backend platform that provides various services such as authentication, database, and storage.
 styled-components: A CSS-in-JS library that allows for easy styling of React components.
 Features
+Redux: A state management library for managing multiple states across different components.
+
 The "Where is Waldo" app has the following features:
 
 Users can search for Waldo and his friends in a busy scene.

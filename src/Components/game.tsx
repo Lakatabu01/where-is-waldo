@@ -9,10 +9,10 @@ import { TheModal } from "../Styles/Modal.style";
 import { useState } from "react";
 import Count from "./countLogic";
 import { useDispatch, useSelector } from "react-redux";
-import { store } from "../index";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../Firebase/firebase.config";
 import { start } from "../Features/CharactersFound";
+import { WinnerModal } from "../Styles/WinnerModal.style";
 
 coordinates();
 
@@ -22,7 +22,7 @@ interface GameProp {
 
 const Game: FC<GameProp> = ({ onClick }) => {
   const [loading, setLoading] = useState(false);
-  const [levelSelected, setLevelSelected] = useState(true);
+  const [levelSelected, setLevelSelected] = useState<boolean>(true);
 
   const image =
     "https://firebasestorage.googleapis.com/v0/b/where-is-waldo-f828f.appspot.com/o/where's-waldo1.jpg?alt=media&token=ef608e8f-1542-44cc-a3c9-f9cc957122c1";

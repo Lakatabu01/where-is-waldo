@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GlobalStyle } from "./Styles/GlobalStyles";
 import Game2 from "./Components/game2";
 import Game3 from "./Components/game3";
+//import { Leaderboard } from "./Components/leaderboard";
 
 function App() {
   const pageCoordinate = (e: React.MouseEvent) => {
@@ -27,6 +28,7 @@ function App() {
           />
           <Route path="/game2" element={<Game2 />} />
           <Route path="/game3" element={<Game3 />} />
+          {/*<Route path="/leaderboard" element={<Leaderboard />} /> */}
         </Routes>
       </div>
     </BrowserRouter>

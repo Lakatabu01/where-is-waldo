@@ -10,8 +10,6 @@ function TheTime() {
   return (
     <div>
       <div>Seconds: {timer.seconds}</div>
-      <div>status: {timer.isRunning}</div>
-      <button>Stop</button>
     </div>
   );
 }
