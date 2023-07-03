@@ -5,11 +5,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import userTimer from "./Features/Timer";
 import charactersFound from "./Features/CharactersFound";
+import check from "./Features/ReloadSlice";
 
 export const store = configureStore({
   reducer: {
     timer: userTimer,
     counter: charactersFound,
+    reload: check,
   },
 });
 

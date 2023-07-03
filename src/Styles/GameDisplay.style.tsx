@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import level2 from "../Assets/where's-waldo2.jpg";
-import level3 from "../Assets/where's-waldo3.jpg";
 import { NavLink } from "react-router-dom";
 
 const Levels = styled.img`
-  width: 300px;
+  width: 600px;
   height: 400px;
   cursor: pointer;
 
@@ -23,9 +21,20 @@ export const SetLevels = styled.div`
   justify-content: space-around;
 `;
 
-const PhotoCaption = styled.h4`
+const PhotoCaption = styled.p`
   text-decoration: none;
   color: purple;
+`;
+
+export const Layout = styled.div`
+  margin: 15px;
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const GameDisplay = () => {
@@ -37,21 +46,7 @@ export const GameDisplay = () => {
         <NavLink to="/game">
           <Levels src={image} />
         </NavLink>
-        <PhotoCaption>Level 1</PhotoCaption>
-      </div>
-
-      <div>
-        <NavLink to="/game2">
-          <Levels src={level2} />
-        </NavLink>
-        <PhotoCaption>Level 2</PhotoCaption>
-      </div>
-
-      <div>
-        <NavLink to="/game3">
-          <Levels src={level3} />
-        </NavLink>
-        <PhotoCaption>Level 3</PhotoCaption>
+        <PhotoCaption>Let's go </PhotoCaption>
       </div>
     </SetLevels>
   );

@@ -1,15 +1,8 @@
-import React, { ReactElement, SyntheticEvent, useEffect, useRef } from "react";
+import React, { SyntheticEvent, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { start } from "../Features/Timer";
 import { Leaderboard } from "./leaderboard";
-import {
-  setDoc,
-  doc,
-  collection,
-  query,
-  orderBy,
-  getDocs,
-} from "firebase/firestore";
+import { setDoc, doc, collection } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../Firebase/firebase.config";
 import {
@@ -50,7 +43,7 @@ const Count: React.FC<TimerProps> = ({ levelSelected, charactersFound }) => {
         dispatch(
           start({
             seconds: timerRef.current.seconds + 1, // Access the latest timer value from the reference
-            isRunning: timerRef.current.isRunning, // Access the latest timer value from the reference
+            isRunning: timerRef.current.isRunning,
           })
         );
       }, 1000);
@@ -58,7 +51,6 @@ const Count: React.FC<TimerProps> = ({ levelSelected, charactersFound }) => {
       return () => clearInterval(interval);
     } else {
       setAnnouncement(true);
-      console.log("please enter your name");
     }
   }, [levelSelected, charactersFound, dispatch]);
 
@@ -89,11 +81,11 @@ const Count: React.FC<TimerProps> = ({ levelSelected, charactersFound }) => {
 
   return (
     <div>
+      {/*Conditional rendering, display component if  state  is true*/}
       {announcement && (
         <>
           <Modal id="TheModal">
             <ModalContent>
-              {/*<Span onClick={closeModal}> &times; </Span>*/}
               <Text id="message"> Congratulations, you won!</Text>
               <InputGroup>
                 <Label>
@@ -118,9 +110,5 @@ const Count: React.FC<TimerProps> = ({ levelSelected, charactersFound }) => {
 
 export default Count;
 
-//then create a high score board
-//create a modal that asks for user's name
-//find a way to push it to the scoreboard where the position depends on the time
-//get the high score board from the database and display it on a modal
 //Properly comment the codebase
 //Remove all console.log statements

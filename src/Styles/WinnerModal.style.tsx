@@ -37,7 +37,7 @@ const Span = styled.span`
 `;
 
 const Text = styled.p`
-  color: black;
+  color: purple;
 `;
 
 const InputGroup = styled.div`
@@ -45,7 +45,7 @@ const InputGroup = styled.div`
 `;
 
 const Label = styled.label`
-  color: black;
+  color: purple;
 `;
 
 const Input = styled.input`
@@ -55,7 +55,11 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  padding: 4px;
+  padding: 8px;
+  color: white;
+  background-color: purple;
+  cursor: pointer;
+  border-radius: 4px;
 `;
 
 export const WinnerModal: FC = () => {
