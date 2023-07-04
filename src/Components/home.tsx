@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { GameDisplay, Layout, ButtonGroup } from "../Styles/GameDisplay.style";
 import { Button } from "../Styles/Buttons.styles";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 //import { check } from "../Features/ReloadSlice";
 
 const Home: FC = () => {

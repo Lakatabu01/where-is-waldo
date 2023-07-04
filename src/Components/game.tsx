@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../Firebase/firebase.config";
 import { start } from "../Features/CharactersFound";
-import { WinnerModal } from "../Styles/WinnerModal.style";
 
 coordinates();
 
@@ -22,7 +21,6 @@ interface GameProp {
 
 const Game: FC<GameProp> = ({ onClick }) => {
   const [loading, setLoading] = useState(false);
-  const [levelSelected, setLevelSelected] = useState<boolean>(true);
 
   const image =
     "https://firebasestorage.googleapis.com/v0/b/where-is-waldo-f828f.appspot.com/o/where's-waldo1.jpg?alt=media&token=ef608e8f-1542-44cc-a3c9-f9cc957122c1";
@@ -65,8 +63,6 @@ const Game: FC<GameProp> = ({ onClick }) => {
           // Extract the coordinates from the document snapshot
           const coordinates = documentSnapshot.data();
 
-          console.log(`${characterName} coordinates:`, coordinates);
-
           //Compare user coordinates with the ones saved to database
           if (
             position[0] >= coordinates.x[0] &&
@@ -93,7 +89,6 @@ const Game: FC<GameProp> = ({ onClick }) => {
               text.textContent = message;
             }
             userSpotted = characterName;
-            console.log("Spotted " + userSpotted);
           } else {
             const modal = document.getElementById("myModal"); // Refactor, use state instead and don't change DOM elements directly
             const text = document.getElementById("message"); // Refactor, use state instead and don't change DOM elements directly
@@ -101,7 +96,6 @@ const Game: FC<GameProp> = ({ onClick }) => {
               modal.style.display = "block";
               text.textContent = "Wrong selection, keep searching";
             }
-            console.log("wrong selection");
           }
         } else {
           console.log(`${characterName} coordinates not found`);
@@ -189,7 +183,7 @@ const Game: FC<GameProp> = ({ onClick }) => {
       </CharacterSelector>
 
       <TheModal />
-      <Count levelSelected={levelSelected} charactersFound={charactersFound} />
+      <Count  charactersFound={charactersFound} />
     </div>
   );
 };

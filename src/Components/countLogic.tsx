@@ -7,7 +7,6 @@ import { useState } from "react";
 import { db } from "../Firebase/firebase.config";
 import {
   ModalContent,
-  Span,
   Text,
   InputGroup,
   Input,
@@ -17,11 +16,10 @@ import {
 } from "../Styles/WinnerModal.style";
 
 interface TimerProps {
-  levelSelected: boolean;
   charactersFound: number;
 }
 
-const Count: React.FC<TimerProps> = ({ levelSelected, charactersFound }) => {
+const Count: React.FC<TimerProps> = ({ charactersFound }) => {
   interface Value {
     timer: { value: { seconds: number; isRunning: boolean; found: number } };
   }
@@ -38,7 +36,7 @@ const Count: React.FC<TimerProps> = ({ levelSelected, charactersFound }) => {
   }, [timer]);
 
   useEffect(() => {
-    if (levelSelected && charactersFound < 3 && timer.isRunning) {
+    if (charactersFound < 3 && timer.isRunning) {
       const interval = setInterval(() => {
         dispatch(
           start({
@@ -52,7 +50,7 @@ const Count: React.FC<TimerProps> = ({ levelSelected, charactersFound }) => {
     } else {
       setAnnouncement(true);
     }
-  }, [levelSelected, charactersFound, dispatch]);
+  }, [charactersFound, dispatch]);
 
   const handleClick = () => {
     setAnnouncement(false);
@@ -66,14 +64,12 @@ const Count: React.FC<TimerProps> = ({ levelSelected, charactersFound }) => {
     try {
       // Generate a unique document ID for the player
       const playerDocRef = doc(collection(db, "leaderboard"));
-      console.log("uploading");
+
       // Add the player's information to the document
       await setDoc(playerDocRef, {
         playerName: e.currentTarget.value,
         playerSeconds: timerRef.current.seconds,
       });
-
-      console.log("Player information saved successfully");
     } catch (error) {
       console.log("Failed to save player information:", error);
     }
@@ -109,6 +105,3 @@ const Count: React.FC<TimerProps> = ({ levelSelected, charactersFound }) => {
 };
 
 export default Count;
-
-//Properly comment the codebase
-//Remove all console.log statements

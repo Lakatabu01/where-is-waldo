@@ -42,10 +42,6 @@ export const Leaderboard: React.FC = () => {
     fetchLeaderboardData();
   }, []);
 
-  useEffect(() => {
-    console.log(leaderboardData);
-  }, [leaderboardData]);
-
   const reload = () => {
     dispatch(
       start({
