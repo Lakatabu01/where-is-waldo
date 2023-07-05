@@ -1,6 +1,6 @@
 {
-  "name": "where-is-waldo",
-  "homepage": "http://lakatabu01.github.io/wheres-waldo/",
+  "name": "wheres-waldo",
+  "homepage": "http://lakatabu01.github.io/where-is-waldo/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
