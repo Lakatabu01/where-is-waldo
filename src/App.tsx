@@ -7,7 +7,7 @@ import { GlobalStyle } from "./Styles/GlobalStyles";
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div data-testid="test-all">
         <GlobalStyle />
         <Header />
 

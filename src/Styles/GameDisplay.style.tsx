@@ -44,7 +44,7 @@ export const GameDisplay = () => {
     <SetLevels>
       <div>
         <NavLink to="/game">
-          <Levels src={image} />
+          <Levels data-testid="image" src={image} />
         </NavLink>
         <PhotoCaption>Let's go </PhotoCaption>
       </div>

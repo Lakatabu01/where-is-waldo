@@ -183,7 +183,7 @@ const Game: FC<GameProp> = ({ onClick }) => {
       </CharacterSelector>
 
       <TheModal />
-      <Count  charactersFound={charactersFound} />
+      <Count charactersFound={charactersFound} />
     </div>
   );
 };

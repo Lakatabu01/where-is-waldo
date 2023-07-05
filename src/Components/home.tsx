@@ -24,8 +24,11 @@ const Home: FC = () => {
       <GameDisplay />
 
       <ButtonGroup>
-        <NavLink to="/game" data-testid="play-game">
-          <Button bgColor="gold"> Start Game</Button>
+        <NavLink to="/game">
+          <Button data-testid="play-game" bgColor="gold">
+            {" "}
+            Start Game
+          </Button>
         </NavLink>
       </ButtonGroup>
     </Layout>

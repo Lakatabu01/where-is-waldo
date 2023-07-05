@@ -1,6 +1,7 @@
 import { Button as TheButton } from "./Buttons.styles";
 import { render, getByTestId, screen } from "@testing-library/react";
 import { GameDisplay } from "./GameDisplay.style";
+import { MemoryRouter } from "react-router-dom";
 
 describe("button", () => {
   it("Should contain the right styling", () => {
@@ -10,8 +11,8 @@ describe("button", () => {
     const button = getByTestId("button") as HTMLButtonElement;
 
     expect(button).toHaveStyle(`
-    border-radius: 1px solid black;
-    padding: 5px;
+    border-radius: 4%;
+    padding:  10px 25px;
     margin: 2px;
     `);
   });
@@ -21,15 +22,17 @@ describe("button", () => {
 
 describe("Check if image is displayed on the homepage", () => {
   it("image should be rendered appropriately", () => {
-    const { getByTestId } = render(<GameDisplay data-testid="image" />);
-    const image = getByTestId("image") as HTMLDivElement;
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <GameDisplay />
+      </MemoryRouter>
+    );
+    const image = getByTestId("image");
 
     expect(image).toHaveStyle(`
-    border-color: 1px solid black;
-    padding: 5px;
-    margin: 2px;
-    height: 80px;
-    width: 80px; 
+    width: 600px;
+    height: 400px;
+    cursor: pointer;
         `);
   });
 });
