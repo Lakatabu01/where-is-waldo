@@ -74,7 +74,7 @@ export const Leaderboard: React.FC = () => {
             ))}
           </ul>
         </Text>
-        <NavLink to="/">
+        <NavLink to="where-is-waldo/">
           <Button bgColor="purple" onClick={reload}>
             Go to homepage
           </Button>
