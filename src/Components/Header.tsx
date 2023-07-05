@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   return (
     <DivContainer>
       <div>
-        <NavLink to="/">
+        <NavLink to="where-is-waldo/">
           <Button bgColor="purple" color="white">
             {" "}
             Home{" "}

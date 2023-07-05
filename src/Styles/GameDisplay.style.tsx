@@ -43,7 +43,7 @@ export const GameDisplay = () => {
   return (
     <SetLevels>
       <div>
-        <NavLink to="/game">
+        <NavLink to="where-is-waldo/game">
           <Levels data-testid="image" src={image} />
         </NavLink>
         <PhotoCaption>Let's go </PhotoCaption>
