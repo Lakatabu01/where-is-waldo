@@ -12,8 +12,8 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path="where-is-waldo/" element={<Home />} />
-          <Route path="where-is-waldo/game" element={<Game />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/game" element={<Game />} />
         </Routes>
       </div>
     </BrowserRouter>
