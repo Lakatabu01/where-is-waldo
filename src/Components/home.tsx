@@ -24,7 +24,7 @@ const Home: FC = () => {
       <GameDisplay />
 
       <ButtonGroup>
-        <NavLink to="where-is-waldo/game">
+        <NavLink to="/where-is-waldo/game">
           <Button data-testid="play-game" bgColor="gold">
             {" "}
             Start Game
