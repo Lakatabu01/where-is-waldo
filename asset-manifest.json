@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/where-is-waldo/static/js/main.9f4a1287.js",
+    "main.js": "/where-is-waldo/static/js/main.fa00a1d9.js",
     "static/media/waldo.jpg": "/where-is-waldo/static/media/waldo.1e2ee91f0cfa0ceeb550.jpg",
     "static/media/odlaw.jpg": "/where-is-waldo/static/media/odlaw.f34b5260e086e9e07982.jpg",
     "index.html": "/where-is-waldo/index.html",
-    "main.9f4a1287.js.map": "/where-is-waldo/static/js/main.9f4a1287.js.map"
+    "main.fa00a1d9.js.map": "/where-is-waldo/static/js/main.fa00a1d9.js.map"
   },
   "entrypoints": [
-    "static/js/main.9f4a1287.js"
+    "static/js/main.fa00a1d9.js"
   ]
 }
