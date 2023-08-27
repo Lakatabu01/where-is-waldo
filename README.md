@@ -1,5 +1,5 @@
 Where is Waldo App
-This project is a "Where is Waldo" game that allows users to find Waldo and his friends in a busy scene. The app is built using React, TypeScript, Firebase, Redux toolkit and styled-components.
+This project is a "Where is Waldo" game that allows users to find Waldo and his friends in a busy scene. The app is built using React, TypeScript, Firebase, Redux toolkit and styled-components. live preview:  https://lakatabu01.github.io/where-is-waldo/
 
 Getting Started
 To get started with the project, follow these steps:
